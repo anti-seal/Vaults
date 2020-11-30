@@ -1,0 +1,198 @@
+<section class="pt-5 pb-3">
+    <div class="container mxw-592">
+        <div class="f24 text-shadow">{{showData.pool ?showData.pool:''}}</div>
+        <div class="d-flex justify-content-end" style="margin-bottom: 15px;">
+            <button href="#" type="button" class="btn btn-outline-secondary" style="margin-right:10px;width: 10%;"
+                (click)="goBack()">Back</button>
+            <button href="#" type="button" class="btn btn-outline-secondary" style="margin-right:10px;width: 15%;"
+                (click)="onClickRefresh()">Refresh</button>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+                    <div class="details">
+                        <div class="col-2">
+                        </div>
+                        <div class="col-8">
+                            <div class="d-flex align-items-center text-left">
+                                <img src="{{urlImage}}" alt="" />
+                                <div class="pl-3">
+                                    <div class="f24 text-blue">{{showData.plantation ?showData.plantation:''}}</div>
+                                    <div class="f15 mb-2">{{showData.deposit ?showData.deposit:''}}</div>
+                                    <!---<div class="f16 text-blue">APY</div>--->
+                                    <div class="f15 mb-2"><a href="https://t.me/ANTI_SEAL/105739">Learn about xANTI's future</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <!-- <button type="button" class="btn outline-yellow w-100">ADD LIQUIDITY</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="box">
+                    <img src="../../assets/images/logo.png" width="48px" alt="" class="mb-2" />
+                    <div class="f28 text-blue">{{earned}}</div>
+                    <div class="f16">{{showData.earned ?showData.earned:''}}</div>
+
+                    <button type="button" class="btn blue w-100" data-toggle="modal" data-target="#custom3">UNSTAKE &
+                        CLAIM REWARDS</button>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="box">
+                    <img src="{{urlImage}}" width="85px" alt="" class="mb-2" />
+                    <div class="f28 text-blue">{{balance}}</div>
+                    <div class="f16">{{showData.staked ?showData.staked:''}}</div>
+                    <div class="d-flex">
+                        <button type="button" class="btn blue w-100 mr-2" *ngIf="show == 'approve'" data-toggle="modal"
+                            data-target="#custom1"> APPROVE</button>
+                        <button type="button" class="btn blue w-100 mr-2" *ngIf="show == ''" data-toggle="modal"
+                           disabled="true"> APPROVE</button>
+                        <!--  -->
+                        <button type="button" class="btn blue w-100 mr-2" *ngIf="show == 'stake'" data-toggle="modal"
+                            data-target="#custom2">STAKE</button>
+
+                        <!-- <button type="button" class="btn yellow w-100" data-toggle="modal"
+                            data-target="#custom3">UNSTAKE</button> -->
+                        <!-- *ngIf="balance && balance >0" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- for Approve -->
+<div class="modal fade" id="custom1" tabindex="-1" role="dialog" aria-labelledby="custom1" aria-hidden="true"
+    data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-black">
+            <div class="modal-body">
+                <div class="modal-header m-3">
+
+                    <h5 class="modal-title">{{approvePopupMsg}}</h5>
+
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
+                        *ngIf="showDisabled != 'show'">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="addForm1" [formGroup]="addForm1">
+                    <div class="modal-body">
+                        <div class="row padding-45" style="margin-bottom: 15px;">
+                            <div class="col-sm p-0">
+                                <div class="text-center d-flex  px-5"><button class="btn btn-outline-secondary cls-b"
+                                        (click)="clickMax()">Max</button>
+                                    <input type="number" formControlName="amount" placeholder="Please enter amount"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted1 && addForm1.controls.amount.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button (click)="onClickApprove()" [attr.disabled]="showDisabled == 'show'?true:null"
+                                type="button" class="btn yellow mb-3" style="width: 30%;">Approve</button>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+    
+                    </div> -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- for stake -->
+<div class="modal fade" id="custom2" tabindex="-1" role="dialog" aria-labelledby="custom2" aria-hidden="true"
+    data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-black">
+            <div class="modal-body">
+                <div class="modal-header m-3">
+
+                    <h5 class="modal-title">Add Liquidity</h5>
+
+                    <!-- <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
+                        *ngIf="showDisabled != 'show'">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <form name="addForm2" [formGroup]="addForm2">
+                    <div class="modal-body">
+                        <div class="row padding-45" style="margin-bottom: 15px;">
+                            <div class="col-sm p-0">
+                                <div class="text-center d-flex  px-5">
+                                    <!-- <button class="btn btn-outline-secondary cls-b"
+                                        (click)="clickMax()">Max</button> -->
+                                    <input type="number" formControlName="amount" [attr.disabled]="true"
+                                        placeholder="Please enter amount" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted1 && addForm2.controls.amount.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button (click)="onClickStack()" [attr.disabled]="showDisabled == 'show'?true:null"
+                                type="button" class="btn yellow mb-3" style="width: 30%;">Stake</button>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+    
+                    </div> -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- for with draw -->
+
+<div class="modal fade" id="custom3" tabindex="-1" role="dialog" aria-labelledby="custom3" aria-hidden="true"
+    data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-black">
+            <div class="modal-body">
+                <div class="modal-header m-3">
+
+                    <h5 class="modal-title">Enter Staked Amount :</h5>
+
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close"
+                        *ngIf="showDisabled != 'show'">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="withDrawForm" [formGroup]="withDrawForm">
+                    <div class="modal-body">
+                        <div class="row padding-45" style="margin-bottom: 15px;">
+                            <div class="col-sm p-0">
+                                <div class="text-center d-flex  px-5">
+                                    <button class="btn btn-outline-secondary cls-b"
+                                        (click)="clickWithdrawMax()">Max</button>
+                                    <input type="number" formControlName="amount" 
+                                        placeholder="Please enter amount" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted1 && withDrawForm.controls.amount.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button (click)="withDraw()" [attr.disabled]="showDisabled == 'show'?true:null"
+                                type="button" class="btn yellow mb-3" style="width: 30%;">Withdraw</button>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+    
+                    </div> -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

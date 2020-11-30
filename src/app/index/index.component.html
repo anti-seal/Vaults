@@ -1,0 +1,75 @@
+<section class="pt-5 pb-3">
+    <div class="container mxw-592">
+        <div class="text-center">
+            <button type="button" data-toggle="modal" data-target="#UnlockWallet" class="btn blue px-3 mb-4">🔓
+                UNLOCK WALLET</button>&nbsp;&nbsp;&nbsp;
+            <button type="button"  class="btn blue px-3 mb-4"
+                (click)="goToSelectfarm()">
+                Dashboard</button>&nbsp;&nbsp;&nbsp;<br>
+            
+            <div class="f24 text-shadow2">How do ANTISEAL's Sealed Vaults work?</div>
+            Deposit Liquidity Pool (LP) tokens into a Sealed Vault to receive xANTI.<br>
+            We currently have vaults which accept ANTISEAL-ETH, USDT-ETH, USDC-ETH, DAI-ETH and WBTC-ETH.<br>
+            In the near future, more vaults such as ROT-ETH, LINK-ETH will be added.<br>
+
+            <br><div class="f24 text-shadow2">What is xANTI and what can I do with it?</div>
+            xANTI is ANTISEAL's governance token. It will be used to allow for proposals to be created and voted on, which will
+            continuously determine the future of ANTISEAL. All xANTI holders will have a say on whether or not a proposal is passed.<br>
+            The website for proposals is currently in development and will be released in the future. For now, if you want a say in ANTISEAL'S future,
+            feel free to join our <a href="https://t.me/ANTI_SEAL">Telegram</a> or <a href="https://twitter.com/ANTISEAL1">@ us on Twitter</a>.<br>
+
+            <br><div class="f24 text-shadow2">Will there be a dollar value associated with xANTI?</div>
+            Supply smoothing is intended to reflect changes in demand of xANTI.<br>
+            This will allow the scarce ownership of the network to be maintained.<br>
+            After a rebase, all holders own the same share of the network as they did before the rebase.<br>
+            The network is simply divided into a new number of shares.<br><br>
+
+            Through the rebase functionality, we plan on re-designing xANTI to be pegged at $1.00 USD.<br>
+            It can still go under or over this $ value but each day, a rebase will occur, changing the supply which in turn can change the value.<br><br>
+
+            <img src="https://pbs.twimg.com/profile_banners/1318262164029952001/1603364857/600x200">
+
+        </div>
+    </div>
+</section> 
+
+
+
+<div class="modal fade" id="UnlockWallet" tabindex="-1" role="dialog" aria-labelledby="UnlockWallet" aria-hidden="true"
+    data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-black">
+            <div class="modal-body">
+                <h5 class="modal-title text-center ">Select a wallet provider</h5>
+                <div class="row align-items-end">
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <img src="../../assets/images/metamask.svg" width="100px" class="place_holder mt-4"
+                                alt="place_holder">
+                            <div class="contain">
+                                <h4 class=" f28 my-4">Metamask</h4>
+                                <button type="button" class="btn yellow w-100 mb-3"
+                                    (click)="connectToMetaMask()">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <img src="../../assets/images/wallet-connect.svg" width="100px" class="place_holder mt-4"
+                                alt="place_holder">
+                            <div class="contain">
+                                <h3 class="f28  my-4">Wallet Connect</h3>
+                                <button (click)="connectToWalletConnect()" type="button"
+                                    class="btn yellow w-100 mb-3">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-outline-secondary w-50 m-auto"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
